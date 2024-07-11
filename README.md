@@ -29,7 +29,7 @@ You will need to run Backend and Frontend parts.
 2. Clone the repository
 
    ```
-       git clone <repository-url>
+       git clone https://github.com/Persiwal/aquaSmart.git
        cd luna-recruitment
    ```
 
@@ -52,7 +52,7 @@ To stop docker containers use:
 1. Clone the repository
 
    ```
-       git clone <repository-url>
+       git clone https://github.com/Persiwal/aquaSmart.git
        cd luna-recruitment
    ```
 
