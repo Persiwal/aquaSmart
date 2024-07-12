@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { CircularProgress, Container, Button } from '@mui/material'
 import useModuleDetails from '../hooks/useModuleDetails'
@@ -11,7 +11,7 @@ import ModuleFormModal from '../components/ui/module-form-modal/ModuleFormModal'
 import { Edit } from '@mui/icons-material'
 import { ModuleFormData } from '../types/ModuleFormData'
 import useEditModule from '../hooks/useEditModule'
-import ReplayIcon from '@mui/icons-material/Replay'
+import ErrorWrapper from '../components/ui/error-wrapper/ErrorWrapper'
 
 const emptyPageContainerStyles = {
   height: '500px',
@@ -46,14 +46,10 @@ const ModuleDetailsPage = () => {
 
   if (isError)
     return (
-      <Box sx={emptyPageContainerStyles}>
-        <Typography>
-          Something went wrong when downloading module details.
-        </Typography>
-        <Button startIcon={<ReplayIcon />} onClick={() => refetch()}>
-          Try again
-        </Button>
-      </Box>
+      <ErrorWrapper
+        errorText="Something went wrong when downloading module details."
+        refetchFn={refetch}
+      />
     )
 
   if (!module)

@@ -1,8 +1,9 @@
-import { Box, Button, CircularProgress, Typography } from '@mui/material'
+import { Box, CircularProgress, Typography } from '@mui/material'
 import type { Module } from '../../../types/Module'
 import ModuleCard from '../../ui/module-card/ModuleCard'
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query'
-import ReplayIcon from '@mui/icons-material/Replay'
+
+import ErrorWrapper from '../../ui/error-wrapper/ErrorWrapper'
 
 interface Props {
   modules: Module[] | undefined
@@ -36,14 +37,10 @@ const ModulesList: React.FC<Props> = ({
 
   if (isError)
     return (
-      <Box sx={emptyListContainerStyles}>
-        <Typography>
-          Something went wrong when fetching modules list.
-        </Typography>
-        <Button startIcon={<ReplayIcon />} onClick={() => refetch()}>
-          Try again
-        </Button>
-      </Box>
+      <ErrorWrapper
+        errorText="Something went wrong when fetching module list."
+        refetchFn={refetch}
+      />
     )
 
   if (!modules || modules.length === 0)
