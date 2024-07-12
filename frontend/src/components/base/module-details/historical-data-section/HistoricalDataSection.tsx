@@ -2,7 +2,8 @@ import { Card, Typography } from '@mui/material'
 import useHistoricalData from '../../../../hooks/useHistoricalData'
 import HistoricalDataChart from './HistoricalDataChart'
 import { useState } from 'react'
-import HistoricalDataForm, { HistoricalFormData } from './HistoricalDataForm'
+import HistoricalDataForm from './HistoricalDataForm'
+import { HistoricalTemperatureReadingFormData } from '../../../../types/HistoricalTemperatureReadings'
 import dayjs from 'dayjs'
 
 export interface Props {
@@ -14,11 +15,12 @@ const HistoricalDataSection: React.FC<Props> = ({
   moduleId,
   targetTemperature,
 }) => {
-  const [formData, setFormData] = useState<HistoricalFormData>({
-    startDate: dayjs(new Date().getTime() - 7 * 24 * 60 * 60 * 1000),
-    endDate: dayjs(new Date()),
-    mode: 'daily',
-  })
+  const [formData, setFormData] =
+    useState<HistoricalTemperatureReadingFormData>({
+      startDate: dayjs(new Date().getTime() - 7 * 24 * 60 * 60 * 1000),
+      endDate: dayjs(new Date()),
+      mode: 'daily',
+    })
 
   const { data: historicalData } = useHistoricalData({
     id: moduleId || '',
@@ -27,7 +29,7 @@ const HistoricalDataSection: React.FC<Props> = ({
     mode: formData.mode,
   })
 
-  const handleFormSubmit = (data: HistoricalFormData) => {
+  const handleFormSubmit = (data: HistoricalTemperatureReadingFormData) => {
     setFormData({
       startDate: data.startDate,
       endDate: data.endDate,
