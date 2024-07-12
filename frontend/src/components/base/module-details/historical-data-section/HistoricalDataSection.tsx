@@ -6,6 +6,9 @@ import HistoricalDataForm from './HistoricalDataForm'
 import { HistoricalTemperatureReadingFormData } from '../../../../types/HistoricalTemperatureReadings'
 import dayjs from 'dayjs'
 
+const weekBefore = dayjs(new Date().getTime() - 7 * 24 * 60 * 60 * 1000)
+const now = dayjs()
+
 export interface Props {
   moduleId: string
   targetTemperature: number
@@ -17,8 +20,8 @@ const HistoricalDataSection: React.FC<Props> = ({
 }) => {
   const [formData, setFormData] =
     useState<HistoricalTemperatureReadingFormData>({
-      startDate: dayjs(new Date().getTime() - 7 * 24 * 60 * 60 * 1000),
-      endDate: dayjs(new Date()),
+      startDate: weekBefore,
+      endDate: now,
       mode: 'daily',
     })
 
