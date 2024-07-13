@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { Box, Typography, Breadcrumbs } from '@mui/material'
 import formatPath from '../../../../utils/formatPath/formatPath'
 
-const containerStyles = { width: '100%', marginBottom: '10px', height: '24px' }
+const containerStyles = { height: '24px' }
 
 const Breadcrumb = () => {
   const location = useLocation()
