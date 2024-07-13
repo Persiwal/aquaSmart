@@ -49,7 +49,7 @@ function ModulesPage() {
   })
 
   return (
-    <Box sx={{ maxWidth: '1000px' }}>
+    <Box sx={{ margin: '0 auto', maxWidth: '1000px' }}>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <PageTitle />
         <Button
