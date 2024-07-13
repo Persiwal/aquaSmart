@@ -4,6 +4,7 @@ import { CssBaseline } from '@mui/material'
 import Container from '@mui/material/Container'
 import Sidebar from './sidebar/Sidebar'
 import Breadcrumb from './breadcrumb/Breadcrumb'
+import MainContentContainer from '../../ui/main-content-container/MainContentContainer'
 
 const Layout = () => {
   return (
@@ -14,9 +15,9 @@ const Layout = () => {
         <Sidebar />
         <Container sx={{ p: 0 }}>
           <Breadcrumb />
-          <main>
+          <MainContentContainer>
             <Outlet />
-          </main>
+          </MainContentContainer>
         </Container>
       </Container>
     </>
