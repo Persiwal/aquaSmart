@@ -38,7 +38,7 @@ const ModulesList: React.FC<Props> = ({
   if (isError)
     return (
       <ErrorWrapper
-        errorText="Something went wrong when fetching module list."
+        errorText="Something went wrong when fetching modules list."
         refetchFn={refetch}
       />
     )
