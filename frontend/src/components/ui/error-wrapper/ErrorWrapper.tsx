@@ -8,17 +8,21 @@ export interface Props {
 }
 
 const containerStyles = {
-  height: '400px',
+  minHeight: '500px',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
 }
 
+const errorTextStyles = {
+  marginBottom: '20px',
+}
+
 const ErrorWrapper: React.FC<Props> = ({ refetchFn, errorText }) => {
   return (
     <Box sx={containerStyles}>
-      <Typography>{errorText}</Typography>
+      <Typography sx={errorTextStyles}>{errorText}</Typography>
       {refetchFn && (
         <Button startIcon={<ReplayIcon />} onClick={() => refetchFn()}>
           Try again
