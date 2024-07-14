@@ -5,6 +5,15 @@ import useCurrentModuleTemperature from '../../../../hooks/useCurrentModuleTempe
 import TempGauge from '../../../ui/thermometer/TempGauge'
 import ModuleOtherParameters from './module-other-parameters/ModuleOtherParameters'
 
+const containerStyles = { p: 4 }
+const disabledContainerStyles = { opacity: '0.5' }
+const disabledContentStyles = { minHeight: '528px' }
+const paramsContainerStyles = {
+  display: 'flex',
+  justifyContent: 'space-around',
+  gap: 7,
+}
+
 interface Props {
   module: Module
 }
@@ -15,8 +24,8 @@ const ModuleCurrentParameters: React.FC<Props> = ({ module }) => {
 
   if (!module.available) {
     return (
-      <Card sx={{ p: 4, opacity: '0.5' }}>
-        <CardContent sx={{ minHeight: '528px' }}>
+      <Card sx={{ ...containerStyles, ...disabledContainerStyles }}>
+        <CardContent sx={disabledContentStyles}>
           <Typography mb={4} variant="h5">
             Live preview
           </Typography>
@@ -31,12 +40,12 @@ const ModuleCurrentParameters: React.FC<Props> = ({ module }) => {
   }
 
   return (
-    <Card sx={{ p: 4 }}>
+    <Card sx={containerStyles}>
       <CardContent>
         <Typography mb={4} variant="h5">
           Live preview
         </Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: 7 }}>
+        <Box sx={paramsContainerStyles}>
           <TempGauge
             value={currentTemperature || 0}
             target={targetTemperature}

@@ -11,6 +11,14 @@ import {
 import SearchIcon from '@mui/icons-material/Search'
 import ClearIcon from '@mui/icons-material/Clear'
 
+const filterFieldsWrapperStyles = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+}
+
+const searchInputStyles = { flex: 1, maxWidth: '500px' }
+
 interface Props {
   searchQuery: string
   showAvailable: boolean
@@ -27,24 +35,18 @@ const ModulesFilter: React.FC<Props> = ({
   onClearSearch,
 }) => {
   return (
-    <Box sx={{ mb: 3 }}>
-      <Typography variant="body1" color="darkgrey" sx={{ mb: 0 }}>
+    <Box mb={3}>
+      <Typography variant="body1" color="darkgrey" mb={0}>
         Filters
       </Typography>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
+      <Box sx={filterFieldsWrapperStyles}>
         <TextField
           label="Search Modules"
           variant="outlined"
           margin="normal"
           value={searchQuery}
           onChange={onSearchChange}
-          sx={{ mr: 2, flex: 1, maxWidth: '500px' }}
+          sx={searchInputStyles}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -71,7 +73,6 @@ const ModulesFilter: React.FC<Props> = ({
             />
           }
           label="Show only available modules"
-          sx={{ mb: 0 }}
         />
       </Box>
     </Box>

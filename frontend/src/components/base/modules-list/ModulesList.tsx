@@ -2,8 +2,14 @@ import { Box, CircularProgress, Typography } from '@mui/material'
 import type { Module } from '../../../types/Module'
 import ModuleCard from '../../ui/module-card/ModuleCard'
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query'
-
 import ErrorWrapper from '../../ui/error-wrapper/ErrorWrapper'
+
+const listContainerStyles = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '12px',
+  width: '100%',
+}
 
 interface Props {
   modules: Module[] | undefined
@@ -51,14 +57,7 @@ const ModulesList: React.FC<Props> = ({
     )
 
   return (
-    <ul
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '12px',
-        width: '100%',
-      }}
-    >
+    <Box sx={listContainerStyles} component="ul">
       {modules.map((module) => {
         return (
           <li key={module.id}>
@@ -66,7 +65,7 @@ const ModulesList: React.FC<Props> = ({
           </li>
         )
       })}
-    </ul>
+    </Box>
   )
 }
 

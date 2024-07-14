@@ -9,7 +9,6 @@ const BackToMainPageButton = () => {
     <Button
       variant="text"
       onClick={() => navigate('/modules')}
-      sx={{ lineHeight: '24px' }}
       startIcon={<ArrowBackIcon />}
     >
       Back to Main Page

@@ -16,7 +16,7 @@ const CurrentTemperatureIndicator: React.FC<Props> = ({
   if (currentTemperature === null) {
     return (
       <Box>
-        <Typography variant="body1" component="p" style={{ color: 'grey' }}>
+        <Typography variant="body1" component="p" color="grey">
           Current Temperature: N/A
         </Typography>
       </Box>

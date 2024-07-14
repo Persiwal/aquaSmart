@@ -9,6 +9,10 @@ import ModuleFormModal from '../components/ui/module-form-modal/ModuleFormModal'
 import useAddModule from '../hooks/useAddModule'
 import { Add } from '@mui/icons-material'
 
+const pageContainerStyles = { m: '0 auto', maxWidth: '1000px' }
+const pageHeaderStyles = { display: 'flex', alignItems: 'center' }
+const addModuleButtonStyles = { marginLeft: 'auto', height: '50px' }
+
 function ModulesPage() {
   const {
     data: modules,
@@ -49,20 +53,19 @@ function ModulesPage() {
   })
 
   return (
-    <Box sx={{ margin: '0 auto', maxWidth: '1000px' }}>
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <Box sx={pageContainerStyles}>
+      <Box sx={pageHeaderStyles}>
         <PageTitle />
         <Button
           variant="contained"
           color="primary"
-          sx={{ marginLeft: 'auto', height: '50px' }}
+          sx={addModuleButtonStyles}
           startIcon={<Add />}
           onClick={() => setAddModalOpen(true)}
         >
           Add module
         </Button>
       </Box>
-
       <ModulesFilter
         searchQuery={searchQuery}
         showAvailable={showAvailable}
@@ -70,7 +73,7 @@ function ModulesPage() {
         onAvailableChange={handleAvailableChange}
         onClearSearch={handleClearSearch}
       />
-      <Box sx={{ mb: 3 }}>
+      <Box mb={3}>
         <Typography variant="body1" component="h1">
           {modules ? filteredModules?.length : '0'} modules on the list
         </Typography>

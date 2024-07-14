@@ -8,7 +8,7 @@ const PageTitle = () => {
   const currentPageTitle = getPageTitle(currentPath)
 
   return (
-    <Typography mt={4} mb={4} variant="h4" sx={{ textAlign: 'left' }}>
+    <Typography mt={4} mb={4} variant="h4" align="left">
       {currentPageTitle}
     </Typography>
   )

@@ -16,6 +16,8 @@ export interface Props {
   mode: HistoricalTemepratureReadingFormMode
 }
 
+const containerStyles = { mt: 3 }
+
 const formatLabel = (
   reading: HistoricalTemperatureReading,
   mode: HistoricalTemepratureReadingFormMode
@@ -95,7 +97,7 @@ const HistoricalDataChart: React.FC<Props> = ({
   }
 
   return (
-    <Box sx={{ mt: 3 }}>
+    <Box sx={containerStyles}>
       <Line data={chartData} options={options} />
     </Box>
   )

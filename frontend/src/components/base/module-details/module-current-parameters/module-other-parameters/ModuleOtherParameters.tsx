@@ -6,6 +6,12 @@ import GrainIcon from '@mui/icons-material/Grain'
 import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat'
 import EvStationIcon from '@mui/icons-material/EvStation'
 
+const contentItemContainerStyles = {
+  display: 'flex',
+  alignItems: 'center',
+  p: 2,
+}
+
 const mockWaterParameters = {
   pH: 7.2,
   ammonia: 0.25,
@@ -76,22 +82,11 @@ const ModuleOtherParameters: React.FC = () => {
           <Grid item key={param.label} width="50%">
             <Card
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                p: 2,
+                ...contentItemContainerStyles,
                 borderLeft: `5px solid ${param.color}`,
               }}
             >
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  mr: 2,
-                }}
-              >
-                {param.icon}
-              </Box>
+              <Box>{param.icon}</Box>
               <Box>
                 <Typography variant="h6">{param.label}</Typography>
                 <Typography variant="subtitle1" color="textSecondary">

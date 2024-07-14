@@ -1,21 +1,28 @@
 import { Box, Chip } from '@mui/material'
 
+const chipLabelContainerStyles = { display: 'flex', alignItems: 'center' }
+const chipLabelDotStyles = {
+  width: 8,
+  height: 8,
+  borderRadius: '50%',
+  marginRight: 1,
+}
+const chipAvailableBgColor = 'rgba(76, 175, 80, 0.3)'
+const chipNotAvailableBgColor = 'rgba(244, 67, 54, 0.3)'
+
 interface Props {
   isAvailable: boolean
 }
 
-const AvaiableChip: React.FC<Props> = ({ isAvailable }) => {
+const AvailableChip: React.FC<Props> = ({ isAvailable }) => {
   return (
     <Chip
       label={
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={chipLabelContainerStyles}>
           <Box
             sx={{
-              width: 8,
-              height: 8,
-              borderRadius: '50%',
+              ...chipLabelDotStyles,
               backgroundColor: isAvailable ? 'green' : 'red',
-              marginRight: 1,
             }}
           />
           {isAvailable ? 'Available' : 'Not Available'}
@@ -23,12 +30,12 @@ const AvaiableChip: React.FC<Props> = ({ isAvailable }) => {
       }
       sx={{
         backgroundColor: isAvailable
-          ? 'rgba(76, 175, 80, 0.3)'
-          : 'rgba(244, 67, 54, 0.3)',
+          ? chipAvailableBgColor
+          : chipNotAvailableBgColor,
         color: isAvailable ? 'green' : 'red',
       }}
     />
   )
 }
 
-export default AvaiableChip
+export default AvailableChip

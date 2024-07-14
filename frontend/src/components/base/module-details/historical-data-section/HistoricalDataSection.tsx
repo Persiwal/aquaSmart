@@ -6,6 +6,12 @@ import HistoricalDataForm from './HistoricalDataForm'
 import { HistoricalTemperatureReadingFormData } from '../../../../types/HistoricalTemperatureReadings'
 import dayjs from 'dayjs'
 
+const historicalDataContainerStyles = {
+  mt: 4,
+  p: 4,
+  bgcolor: 'rgba(0, 0, 0, 0.01)',
+}
+
 const weekBefore = dayjs(new Date().getTime() - 7 * 24 * 60 * 60 * 1000)
 const now = dayjs()
 
@@ -41,7 +47,7 @@ const HistoricalDataSection: React.FC<Props> = ({
   }
 
   return (
-    <Card sx={{ mt: 4, p: 4, bgcolor: 'rgba(0, 0, 0, 0.01)' }}>
+    <Card sx={historicalDataContainerStyles}>
       <Typography variant="h5">Temperature history</Typography>
       <HistoricalDataForm
         initialValues={{ ...formData }}

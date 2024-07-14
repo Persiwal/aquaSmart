@@ -20,6 +20,12 @@ const emptyPageContainerStyles = {
   alignItems: 'center',
   justifyContent: 'center',
 }
+const pageContainerStyles = { my: 3, padding: '0px !important' }
+const pageHeaderStyles = {
+  display: 'flex',
+  gap: 4,
+  alignItems: 'center',
+}
 
 const ModuleDetailsPage = () => {
   const { moduleId } = useParams()
@@ -60,15 +66,9 @@ const ModuleDetailsPage = () => {
     )
 
   return (
-    <Container sx={{ my: 3, padding: '0px !important' }}>
-      <Box
-        sx={{
-          display: 'flex',
-          gap: 4,
-          alignItems: 'center',
-        }}
-      >
-        <Typography mt={4} mb={4} variant="h4" sx={{ textAlign: 'left' }}>
+    <Container sx={pageContainerStyles}>
+      <Box sx={pageHeaderStyles}>
+        <Typography mt={4} mb={4} variant="h4" align="left">
           {module.name}
         </Typography>
         <AvailableChip isAvailable={module.available} />
@@ -83,7 +83,7 @@ const ModuleDetailsPage = () => {
           Edit Module
         </Button>
       </Box>
-      <Typography mt={0} mb={2} variant="body2" sx={{ textAlign: 'left' }}>
+      <Typography mt={0} mb={2} variant="body2" align="left">
         {module.description}
       </Typography>
       <ModuleCurrentParameters module={module} />

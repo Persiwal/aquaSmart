@@ -1,8 +1,22 @@
 import React from 'react'
 import { CardContent, Typography, Box } from '@mui/material'
 import type { Module } from '../../../types/Module'
-import AvaiableChip from '../available-chip/AvailableChip'
+import AvailableChip from '../available-chip/AvailableChip'
 import CurrentTemperatureIndicator from '../current-temperature-indicator/CurrentTemperatureIndicator'
+
+const cardHeaderContainerStyles = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  mb: 3,
+}
+
+const temperaturesContainerStyles = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  mt: 2,
+}
 
 interface Props {
   module: Module
@@ -13,27 +27,13 @@ const ModuleCardContent: React.FC<Props> = ({ module }) => {
 
   return (
     <CardContent>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          mb: 3,
-        }}
-      >
+      <Box sx={cardHeaderContainerStyles}>
         <Typography variant="h5" component="h2" align="left">
           {name}
         </Typography>
-        <AvaiableChip isAvailable={available} />
+        <AvailableChip isAvailable={available} />
       </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          mt: 2,
-        }}
-      >
+      <Box sx={temperaturesContainerStyles}>
         <Typography variant="body1" component="p">
           Target Temperature: {targetTemperature}°C
         </Typography>

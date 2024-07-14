@@ -4,6 +4,11 @@ import type { Module } from '../../../types/Module'
 import { useNavigate } from 'react-router-dom'
 import ModuleCardContent from './ModuleCardContent'
 
+const containerStyles = { m: 0, width: '100%' }
+const actionAreaStyles = {
+  p: 2,
+}
+
 interface Props {
   module: Module
 }
@@ -17,8 +22,8 @@ const ModuleCard: React.FC<Props> = ({ module }) => {
   }
 
   return (
-    <Card sx={{ m: '0', width: '100%' }}>
-      <CardActionArea sx={{ p: 2 }} onClick={() => handleClick(id)}>
+    <Card sx={containerStyles}>
+      <CardActionArea sx={actionAreaStyles} onClick={() => handleClick(id)}>
         <ModuleCardContent module={module} />
       </CardActionArea>
     </Card>

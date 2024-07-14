@@ -12,8 +12,13 @@ import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import type { HistoricalTemperatureReadingFormData } from '../../../../types/HistoricalTemperatureReadings'
 
+const endDateContainerStyles = {
+  position: 'relative',
+}
 const errorTextContainerStyles = { position: 'absolute' }
 const selectInputStyles = { width: '246px' }
+const inputsContainerStyles = { display: 'flex', gap: 2, mt: 3, mb: 3 }
+const submitButtonStyles = { height: '56px', mr: 4 }
 
 export interface Props {
   onSubmit: (data: HistoricalTemperatureReadingFormData) => void
@@ -62,7 +67,7 @@ const HistoricalDataForm: React.FC<Props> = ({ onSubmit, initialValues }) => {
       }}
     >
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <Box sx={{ display: 'flex', gap: 2, mt: 3, mb: 3 }}>
+        <Box sx={inputsContainerStyles}>
           <Controller
             name="startDate"
             control={control}
@@ -80,7 +85,7 @@ const HistoricalDataForm: React.FC<Props> = ({ onSubmit, initialValues }) => {
             name="endDate"
             control={control}
             render={({ field, fieldState }) => (
-              <Box sx={{ position: 'relative' }}>
+              <Box sx={endDateContainerStyles}>
                 <DatePicker
                   label="End Date"
                   value={field.value}
@@ -121,7 +126,7 @@ const HistoricalDataForm: React.FC<Props> = ({ onSubmit, initialValues }) => {
         type="submit"
         variant="contained"
         color="primary"
-        sx={{ height: '56px', mr: 4 }}
+        sx={submitButtonStyles}
         disabled={!isValid}
       >
         Update Chart

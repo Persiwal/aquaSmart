@@ -2,9 +2,11 @@ import { Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import Gauge from 'react-gauge-component'
 
+const containerStyles = { width: '500px' }
+
 const TempGauge = ({ value, target }: { value: number; target: number }) => {
   return (
-    <Box sx={{ width: '500px' }}>
+    <Box sx={containerStyles}>
       <Typography align="center" variant="h6">
         Temperature
       </Typography>
