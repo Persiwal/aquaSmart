@@ -4,15 +4,16 @@ import {
   Box,
   TextField,
   MenuItem,
-  Select,
   FormControl,
-  InputLabel,
   Button,
   FormHelperText,
 } from '@mui/material'
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import type { HistoricalTemperatureReadingFormData } from '../../../../types/HistoricalTemperatureReadings'
+
+const errorTextContainerStyles = { position: 'absolute' }
+const selectInputStyles = { width: '246px' }
 
 export interface Props {
   onSubmit: (data: HistoricalTemperatureReadingFormData) => void
@@ -89,7 +90,7 @@ const HistoricalDataForm: React.FC<Props> = ({ onSubmit, initialValues }) => {
                   slots={{ textField: (params) => <TextField {...params} /> }}
                 />
                 {fieldState.error && (
-                  <FormHelperText error sx={{ position: 'absolute' }}>
+                  <FormHelperText error sx={errorTextContainerStyles}>
                     {fieldState.error.message}
                   </FormHelperText>
                 )}
@@ -100,16 +101,17 @@ const HistoricalDataForm: React.FC<Props> = ({ onSubmit, initialValues }) => {
             name="mode"
             control={control}
             render={({ field }) => (
-              <FormControl sx={{ width: '246px' }}>
-                <InputLabel id="mode-label">Mode</InputLabel>
-                <Select
+              <FormControl sx={selectInputStyles}>
+                <TextField
+                  label="Mode"
                   {...field}
                   aria-labelledby="mode-label"
                   defaultValue="daily"
+                  select
                 >
                   <MenuItem value="hourly">Hourly</MenuItem>
                   <MenuItem value="daily">Daily</MenuItem>
-                </Select>
+                </TextField>
               </FormControl>
             )}
           />
