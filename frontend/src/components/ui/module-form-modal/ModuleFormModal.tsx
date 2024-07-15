@@ -7,7 +7,9 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
+  Typography,
 } from '@mui/material'
+import { LoadingButton } from '@mui/lab'
 import { ModuleFormData } from '../../../types/ModuleFormData'
 
 const dialogContainerStyles = {
@@ -29,6 +31,8 @@ interface Props {
   onSubmit: (data: ModuleFormData) => void
   initialValues: ModuleFormData
   title: string
+  error: string | undefined
+  isPending: boolean
 }
 
 const ModuleFormModal: React.FC<Props> = ({
@@ -37,6 +41,8 @@ const ModuleFormModal: React.FC<Props> = ({
   onSubmit,
   initialValues,
   title,
+  error,
+  isPending,
 }) => {
   const {
     handleSubmit,
@@ -57,6 +63,11 @@ const ModuleFormModal: React.FC<Props> = ({
     <Dialog open={open} onClose={handleClose} sx={dialogContainerStyles}>
       <DialogTitle>{title}</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
+        {error && (
+          <Typography align="center" color="error">
+            {error}
+          </Typography>
+        )}
         <DialogContent sx={dialogContentStyles}>
           <Controller
             name="name"
@@ -66,6 +77,7 @@ const ModuleFormModal: React.FC<Props> = ({
               <TextField
                 {...field}
                 label="Name"
+                disabled={isPending}
                 error={!!errors.name}
                 helperText={errors.name?.message}
               />
@@ -80,6 +92,7 @@ const ModuleFormModal: React.FC<Props> = ({
                 {...field}
                 label="Description"
                 multiline
+                disabled={isPending}
                 rows={4}
                 error={!!errors.description}
                 helperText={errors.description?.message}
@@ -92,12 +105,12 @@ const ModuleFormModal: React.FC<Props> = ({
             rules={{
               required: 'Target temperature is required',
               min: {
-                value: 0,
-                message: 'Target temperature must be at least 0',
+                value: 0.1,
+                message: 'Target temperature must be greater than 0',
               },
               max: {
-                value: 40,
-                message: 'Target temperature must be at most 40',
+                value: 39.9,
+                message: 'Target temperature must be less than 400',
               },
             }}
             render={({ field }) => (
@@ -105,6 +118,10 @@ const ModuleFormModal: React.FC<Props> = ({
                 {...field}
                 label="Target Temperature"
                 type="number"
+                inputProps={{
+                  step: '0.1',
+                }}
+                disabled={isPending}
                 error={!!errors.targetTemperature}
                 helperText={errors.targetTemperature?.message}
               />
@@ -113,14 +130,15 @@ const ModuleFormModal: React.FC<Props> = ({
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button
+          <LoadingButton
             type="submit"
+            loading={isPending}
             variant="contained"
             color="primary"
             disabled={!isValid || !isDirty}
           >
             Save
-          </Button>
+          </LoadingButton>
         </DialogActions>
       </form>
     </Dialog>

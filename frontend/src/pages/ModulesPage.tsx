@@ -23,11 +23,14 @@ function ModulesPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [showAvailable, setShowAvailable] = useState(false)
   const [isAddModalOpen, setAddModalOpen] = useState(false)
-  const { mutate: addModule } = useAddModule()
+  const {
+    mutate: addModule,
+    isPending: isAddModulePending,
+    error: addModuleError,
+  } = useAddModule()
 
   const handleAddModule = (data: ModuleFormData) => {
     addModule(data)
-    setAddModalOpen(false)
   }
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,6 +90,8 @@ function ModulesPage() {
       <ModuleFormModal
         title="Add module"
         open={isAddModalOpen}
+        error={addModuleError?.message}
+        isPending={isAddModulePending}
         onClose={() => setAddModalOpen(false)}
         onSubmit={handleAddModule}
         initialValues={{

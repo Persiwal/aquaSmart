@@ -36,11 +36,14 @@ const ModuleDetailsPage = () => {
     refetch,
   } = useModuleDetails(moduleId || '')
   const [isEditModalOpen, setEditModalOpen] = useState(false)
-  const { mutate: updateModule } = useEditModule(moduleId || '')
+  const {
+    mutate: updateModule,
+    error: updateModuleError,
+    isPending: isUpdateModulePending,
+  } = useEditModule(moduleId || '')
 
-  const handleEditModule = (data: ModuleFormData) => {
+  const handleEditModule = async (data: ModuleFormData) => {
     updateModule(data)
-    setEditModalOpen(false)
   }
 
   if (isLoading)
@@ -93,7 +96,9 @@ const ModuleDetailsPage = () => {
       />
       <ModuleFormModal
         title="Edit Module"
+        error={updateModuleError?.message}
         open={isEditModalOpen}
+        isPending={isUpdateModulePending}
         onClose={() => setEditModalOpen(false)}
         onSubmit={handleEditModule}
         initialValues={{

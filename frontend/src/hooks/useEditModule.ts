@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import type { Module } from '../types/Module'
 import type { ModuleFormData } from '../types/ModuleFormData'
 import { getApiBaseURL } from '../api'
+import { handleError } from '../utils/fetchErrorHandler'
 
 const useEditModule = (moduleId: string) => {
   const BASE_API_URL = getApiBaseURL()
@@ -22,11 +23,12 @@ const useEditModule = (moduleId: string) => {
       })
 
       if (!res.ok) {
-        throw new Error('Something went wrong when updating the module.')
+        const errText = await res.text()
+
+        throw new Error(errText)
       }
 
       const data = await res.json()
-
       return data as unknown as Module
     },
     onSuccess: () => {
@@ -34,6 +36,9 @@ const useEditModule = (moduleId: string) => {
       queryClient.invalidateQueries({
         queryKey: [`module-details-${moduleId}`],
       })
+    },
+    onError: (error) => {
+      handleError(error)
     },
   })
 
