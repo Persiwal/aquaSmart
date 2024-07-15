@@ -11,6 +11,7 @@ import {
 } from '@mui/material'
 import { LoadingButton } from '@mui/lab'
 import { ModuleFormData } from '../../../types/ModuleFormData'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 
 const dialogContainerStyles = {
   '.MuiPaper-root': {
@@ -33,6 +34,8 @@ interface Props {
   title: string
   error: string | undefined
   isPending: boolean
+  isSuccess: boolean
+  successMsg: string | undefined
 }
 
 const ModuleFormModal: React.FC<Props> = ({
@@ -43,6 +46,8 @@ const ModuleFormModal: React.FC<Props> = ({
   title,
   error,
   isPending,
+  isSuccess,
+  successMsg,
 }) => {
   const {
     handleSubmit,
@@ -69,76 +74,99 @@ const ModuleFormModal: React.FC<Props> = ({
           </Typography>
         )}
         <DialogContent sx={dialogContentStyles}>
-          <Controller
-            name="name"
-            control={control}
-            rules={{ required: 'Name is required' }}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="Name"
-                disabled={isPending}
-                error={!!errors.name}
-                helperText={errors.name?.message}
+          {isSuccess ? (
+            <Typography
+              align="center"
+              color="success"
+              variant="h5"
+              sx={{
+                display: 'flex',
+                gap: 3,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <CheckCircleOutlineIcon fontSize="large" color="success" />{' '}
+              {successMsg}
+            </Typography>
+          ) : (
+            <>
+              <Controller
+                name="name"
+                control={control}
+                rules={{ required: 'Name is required' }}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Name"
+                    disabled={isPending}
+                    error={!!errors.name}
+                    helperText={errors.name?.message}
+                  />
+                )}
               />
-            )}
-          />
-          <Controller
-            name="description"
-            control={control}
-            rules={{ required: 'Description is required' }}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="Description"
-                multiline
-                disabled={isPending}
-                rows={4}
-                error={!!errors.description}
-                helperText={errors.description?.message}
+              <Controller
+                name="description"
+                control={control}
+                rules={{ required: 'Description is required' }}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Description"
+                    multiline
+                    disabled={isPending}
+                    rows={4}
+                    error={!!errors.description}
+                    helperText={errors.description?.message}
+                  />
+                )}
               />
-            )}
-          />
-          <Controller
-            name="targetTemperature"
-            control={control}
-            rules={{
-              required: 'Target temperature is required',
-              min: {
-                value: 0.1,
-                message: 'Target temperature must be greater than 0',
-              },
-              max: {
-                value: 39.9,
-                message: 'Target temperature must be less than 400',
-              },
-            }}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="Target Temperature"
-                type="number"
-                inputProps={{
-                  step: '0.1',
+              <Controller
+                name="targetTemperature"
+                control={control}
+                rules={{
+                  required: 'Target temperature is required',
+                  min: {
+                    value: 0.1,
+                    message: 'Target temperature must be greater than 0',
+                  },
+                  max: {
+                    value: 39.9,
+                    message: 'Target temperature must be less than 40',
+                  },
                 }}
-                disabled={isPending}
-                error={!!errors.targetTemperature}
-                helperText={errors.targetTemperature?.message}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Target Temperature"
+                    type="number"
+                    inputProps={{
+                      step: '0.1',
+                    }}
+                    disabled={isPending}
+                    error={!!errors.targetTemperature}
+                    helperText={errors.targetTemperature?.message}
+                  />
+                )}
               />
-            )}
-          />
+            </>
+          )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <LoadingButton
-            type="submit"
-            loading={isPending}
-            variant="contained"
-            color="primary"
-            disabled={!isValid || !isDirty}
-          >
-            Save
-          </LoadingButton>
+          <Button onClick={handleClose}>
+            {isSuccess ? 'Close' : 'Cancel'}
+          </Button>
+          {!isSuccess && (
+            <LoadingButton
+              type="submit"
+              loading={isPending}
+              variant="contained"
+              color="primary"
+              disabled={!isValid || !isDirty}
+            >
+              Save
+            </LoadingButton>
+          )}
         </DialogActions>
       </form>
     </Dialog>

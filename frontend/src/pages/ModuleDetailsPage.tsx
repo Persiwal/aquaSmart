@@ -40,10 +40,21 @@ const ModuleDetailsPage = () => {
     mutate: updateModule,
     error: updateModuleError,
     isPending: isUpdateModulePending,
+    isSuccess: isEditModuleSuccess,
+    reset: resetEditModule,
   } = useEditModule(moduleId || '')
 
   const handleEditModule = async (data: ModuleFormData) => {
     updateModule(data)
+  }
+
+  const handleModalClose = () => {
+    setEditModalOpen(false)
+
+    // make sure the modal is closed before reset
+    setTimeout(() => {
+      resetEditModule()
+    }, 100)
   }
 
   if (isLoading)
@@ -99,7 +110,9 @@ const ModuleDetailsPage = () => {
         error={updateModuleError?.message}
         open={isEditModalOpen}
         isPending={isUpdateModulePending}
-        onClose={() => setEditModalOpen(false)}
+        isSuccess={isEditModuleSuccess}
+        successMsg="Sucessfully edited module!"
+        onClose={handleModalClose}
         onSubmit={handleEditModule}
         initialValues={{
           name: module.name,

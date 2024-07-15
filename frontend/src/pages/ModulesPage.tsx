@@ -27,10 +27,21 @@ function ModulesPage() {
     mutate: addModule,
     isPending: isAddModulePending,
     error: addModuleError,
+    isSuccess: isAddModuleSuccess,
+    reset: resetAddModule,
   } = useAddModule()
 
   const handleAddModule = (data: ModuleFormData) => {
     addModule(data)
+  }
+
+  const handleModalClose = () => {
+    setAddModalOpen(false)
+
+    // make sure the modal is closed before reset
+    setTimeout(() => {
+      resetAddModule()
+    }, 100)
   }
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -91,8 +102,10 @@ function ModulesPage() {
         title="Add module"
         open={isAddModalOpen}
         error={addModuleError?.message}
+        isSuccess={isAddModuleSuccess}
+        successMsg="Sucessfully created module!"
         isPending={isAddModulePending}
-        onClose={() => setAddModalOpen(false)}
+        onClose={handleModalClose}
         onSubmit={handleAddModule}
         initialValues={{
           name: '',
