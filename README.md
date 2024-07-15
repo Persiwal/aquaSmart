@@ -30,7 +30,7 @@ You will need to run Backend and Frontend parts.
 
    ```
        git clone https://github.com/Persiwal/aquaSmart.git
-       cd luna-recruitment
+       cd aquaSmart
    ```
 
 3. Build docker images (after first launch you don't need to use --build flag anymore):
@@ -53,7 +53,7 @@ To stop docker containers use:
 
    ```
        git clone https://github.com/Persiwal/aquaSmart.git
-       cd luna-recruitment
+       cd aquaSmart
    ```
 
 2. Run backend server
