@@ -5,6 +5,8 @@ import Container from '@mui/material/Container'
 import Breadcrumb from './breadcrumb/Breadcrumb'
 import MainContentContainer from '../../ui/main-content-container/MainContentContainer'
 import BackToMainPageButton from '../../ui/back-to-main-page-button/BackToMainPageButton'
+import { ErrorBoundary } from 'react-error-boundary'
+import ErrorBoundaryComponent from '../../ui/error-boundary/ErrorBoundaryComponent'
 
 const layoutContainerStyles = {
   display: 'flex',
@@ -26,19 +28,21 @@ const Layout = () => {
   const currentPath = location.pathname
 
   return (
-    <Box sx={layoutContainerStyles}>
-      <CssBaseline />
-      <Header />
-      <Container maxWidth="xl" sx={mainContainerStyles}>
-        <Box sx={currentPageNavStyles}>
-          {currentPath.startsWith('/modules/') && <BackToMainPageButton />}
-          <Breadcrumb />
-        </Box>
-        <MainContentContainer>
-          <Outlet />
-        </MainContentContainer>
-      </Container>
-    </Box>
+    <ErrorBoundary FallbackComponent={ErrorBoundaryComponent}>
+      <Box sx={layoutContainerStyles}>
+        <CssBaseline />
+        <Header />
+        <Container maxWidth="xl" sx={mainContainerStyles}>
+          <Box sx={currentPageNavStyles}>
+            {currentPath.startsWith('/modules/') && <BackToMainPageButton />}
+            <Breadcrumb />
+          </Box>
+          <MainContentContainer>
+            <Outlet />
+          </MainContentContainer>
+        </Container>
+      </Box>
+    </ErrorBoundary>
   )
 }
 

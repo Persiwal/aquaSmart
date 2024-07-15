@@ -16,12 +16,10 @@ const routes = [
       {
         path: '/modules',
         element: <ModulesPage />,
-        errorElement: <NotFoundPage />,
       },
       {
         path: '/modules/:moduleId',
         element: <ModuleDetailsPage />,
-        errorElement: <NotFoundPage />,
       },
       {
         path: '*',

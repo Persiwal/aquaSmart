@@ -19,7 +19,7 @@ const errorTextStyles = {
   marginBottom: '20px',
 }
 
-const ErrorWrapper: React.FC<Props> = ({ refetchFn, errorText }) => {
+const FetchErrorWrapper: React.FC<Props> = ({ refetchFn, errorText }) => {
   return (
     <Box sx={containerStyles}>
       <Typography sx={errorTextStyles}>{errorText}</Typography>
@@ -32,4 +32,4 @@ const ErrorWrapper: React.FC<Props> = ({ refetchFn, errorText }) => {
   )
 }
 
-export default ErrorWrapper
+export default FetchErrorWrapper

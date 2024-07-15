@@ -11,7 +11,7 @@ import ModuleFormModal from '../components/ui/module-form-modal/ModuleFormModal'
 import { Edit } from '@mui/icons-material'
 import { ModuleFormData } from '../types/ModuleFormData'
 import useEditModule from '../hooks/useEditModule'
-import ErrorWrapper from '../components/ui/error-wrapper/ErrorWrapper'
+import FetchErrorWrapper from '../components/ui/fetch-error-wrapper/FetchErrorWrapper'
 
 const emptyPageContainerStyles = {
   height: '500px',
@@ -52,7 +52,7 @@ const ModuleDetailsPage = () => {
 
   if (isError)
     return (
-      <ErrorWrapper
+      <FetchErrorWrapper
         errorText="Something went wrong when downloading module details."
         refetchFn={refetch}
       />

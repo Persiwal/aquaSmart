@@ -2,7 +2,7 @@ import { Box, CircularProgress, Typography } from '@mui/material'
 import type { Module } from '../../../types/Module'
 import ModuleCard from '../../ui/module-card/ModuleCard'
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query'
-import ErrorWrapper from '../../ui/error-wrapper/ErrorWrapper'
+import FetchErrorWrapper from '../../ui/fetch-error-wrapper/FetchErrorWrapper'
 
 const listContainerStyles = {
   display: 'flex',
@@ -43,7 +43,7 @@ const ModulesList: React.FC<Props> = ({
 
   if (isError)
     return (
-      <ErrorWrapper
+      <FetchErrorWrapper
         errorText="Something went wrong when fetching modules list."
         refetchFn={refetch}
       />
