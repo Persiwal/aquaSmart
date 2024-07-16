@@ -86,7 +86,7 @@ To stop docker containers use:
   - Display other paramters (pH, Ammonia, Nitrate, etc...) - this data is mocked in frontend
   - Temperature history
     - Select start date, end date and mode (daily or hourly)
-    - Display requested data in chart
+    - Display requested data in chart or table (user is able to choose view mode)
   - Edit module
 
 ## Testing
