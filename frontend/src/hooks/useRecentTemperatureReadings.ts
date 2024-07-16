@@ -2,11 +2,9 @@ import { useEffect } from 'react'
 import { io } from 'socket.io-client'
 import useRecentTemperatureReadingsStore from '../store'
 import { TemperatureReading } from '../types/TemperatureReading'
-import { getApiBaseURL } from '../api-config'
+import { BASE_API_URL } from '../api'
 
 const useRecentTemperatureReadings = () => {
-  const BASE_API_URL = getApiBaseURL()
-
   const { setRecentTemperatureReadings } = useRecentTemperatureReadingsStore()
 
   useEffect(() => {
@@ -27,7 +25,7 @@ const useRecentTemperatureReadings = () => {
     return () => {
       socket.disconnect()
     }
-  }, [setRecentTemperatureReadings, BASE_API_URL])
+  }, [setRecentTemperatureReadings])
 }
 
 export default useRecentTemperatureReadings

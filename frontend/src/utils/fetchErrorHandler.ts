@@ -1,4 +1,3 @@
-// src/utils/errorHandler.ts
 export const handleError = (error: unknown): string => {
   if (typeof error === 'string') {
     console.error(error)
