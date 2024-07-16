@@ -4,7 +4,7 @@ import type {
   HistoricalTemperatureReading,
 } from '../types/HistoricalTemperatureReadings'
 import { Dayjs } from 'dayjs'
-import { getApiBaseURL } from '../api'
+import { getApiBaseURL } from '../api-config'
 
 interface Props {
   id: string

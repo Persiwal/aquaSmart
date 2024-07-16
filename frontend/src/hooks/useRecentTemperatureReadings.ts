@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { io } from 'socket.io-client'
 import useRecentTemperatureReadingsStore from '../store'
 import { TemperatureReading } from '../types/TemperatureReading'
-import { getApiBaseURL } from '../api'
+import { getApiBaseURL } from '../api-config'
 
 const useRecentTemperatureReadings = () => {
   const BASE_API_URL = getApiBaseURL()

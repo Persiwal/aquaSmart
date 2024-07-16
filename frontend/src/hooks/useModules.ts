@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import type { Module } from '../types/Module'
-import { getApiBaseURL } from '../api'
+import { getApiBaseURL } from '../api-config'
 
 const useModules = () => {
   const BASE_API_URL = getApiBaseURL()

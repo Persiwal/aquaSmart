@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import type { Module } from '../types/Module'
 import type { ModuleFormData } from '../types/ModuleFormData'
-import { getApiBaseURL } from '../api'
+import { getApiBaseURL } from '../api-config'
 import { handleError } from '../utils/fetchErrorHandler'
 
 const useAddModule = () => {
