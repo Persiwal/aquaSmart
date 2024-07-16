@@ -129,7 +129,7 @@ const HistoricalDataForm: React.FC<Props> = ({ onSubmit, initialValues }) => {
         sx={submitButtonStyles}
         disabled={!isValid}
       >
-        Update Chart
+        Update data
       </Button>
     </form>
   )
