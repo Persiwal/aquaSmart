@@ -8,6 +8,8 @@ import { Box } from '@mui/material'
 import { Chart, ChartOptions } from 'chart.js'
 import annotationPlugin from 'chartjs-plugin-annotation'
 
+const containerStyles = { mt: 3 }
+
 Chart.register(annotationPlugin)
 
 export interface Props {
@@ -15,8 +17,6 @@ export interface Props {
   targetTemperature: number
   mode: HistoricalTemepratureReadingFormMode
 }
-
-const containerStyles = { mt: 3 }
 
 const formatLabel = (
   reading: HistoricalTemperatureReading,
